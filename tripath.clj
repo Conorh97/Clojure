@@ -18,6 +18,11 @@
 
   (defn minPath [tree] (recSum tree 0 0))
 
-  (println (minPath [[3] [2 4] [1 9 3] [9 9 2 4] [4 6 6 7 8] [5 7 3 5 1 4]]))
+  (println (minPath [[3] 
+                    [2 4] 
+                   [1 9 3] 
+                  [9 9 2 4] 
+                 [4 6 6 7 8] 
+                [5 7 3 5 1 4]]))
 
 )
