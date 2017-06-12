@@ -23,11 +23,9 @@
 
   (defn getColumns [x] (count (get x 0)))
 
-  (defn inMaze [x s] (and (and (> (get s 0) 0) (< (get s 0) (getRows x))) (and (> (get s 1) 0) (< (get s 1) (getColumns x)))))
+  (defn inMaze [x s] (and (and (>= (get s 0) 0) (< (get s 0) (getRows x))) (and (>= (get s 1) 0) (< (get s 1) (getColumns x)))))
 
   (defn isSeen [s m] (contains? (get m \M) s))
-
-  (defn validMove [x s m] (and (and (not= (valAt x s) \#) (inMaze x s) ) (= (isSeen s m) false)))
 
   (defn moveUp [s] [(+ (get s 0) 1) (get s 1)])
 
@@ -39,9 +37,9 @@
 
   (defn findPath [x mc m c s]
    (loop [maze x movecount mc mouse m cheese c seen s]
-    (if (= movecount (* (getRows x) (getColumns x)))
+    (if (or (> movecount (* (getRows x) (getColumns x))) (= (isSeen mouse seen) true))
      false
-     (if (= mouse \#)
+     (if (or (= (valAt maze mouse) \#) (= (inMaze maze mouse) false))
       false
       (if (= mouse cheese)
        true
@@ -50,8 +48,8 @@
        (or (findPath maze (+ movecount 1) (moveRight mouse) cheese (assoc seen \M (conj mouse (get seen \M))))
        (findPath maze (+ movecount 1) (moveLeft mouse) cheese (assoc seen \M (conj mouse (get seen \M)))))))))))
 
-  (defn callPath [x] (findPath x 1 (getIndex x \M) (getIndex x \C) {\M []}))
+  (defn callPath [x] (findPath x 0 (getIndex x \M) (getIndex x \C) {\M []}))
 
-  (println (callPath ["M#C" "   " "###"]))
+  (println (callPath ["M   C"]))
 
 )
