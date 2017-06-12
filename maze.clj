@@ -7,7 +7,9 @@
 
   [& args]
   (defn getIndex [x s]
-   (loop [maze x letter s row 0]
+   (loop [maze x 
+          letter s 
+          row 0]
     (if (= row (count maze))
      nil
      (if (not= (.indexOf (into [] (nth maze row)) letter) -1)
@@ -36,7 +38,11 @@
   (defn moveRight [s] [(get s 0) (+ (get s 1) 1)])
 
   (defn findPath [x mc m c s]
-   (loop [maze x movecount mc mouse m cheese c seen s]
+   (loop [maze x 
+          movecount mc 
+          mouse m 
+          cheese c 
+          seen s]
     (if (or (> movecount (* (getRows x) (getColumns x))) (= (isSeen mouse seen) true))
      false
      (if (or (= (valAt maze mouse) \#) (= (inMaze maze mouse) false))
