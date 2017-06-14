@@ -22,19 +22,15 @@
     (nth (get maze (nth square 0)) (nth square 1))))
 
   (defn getRows [x] (count x))
-
   (defn getColumns [x] (count (get x 0)))
 
   (defn inMaze [x s] (and (and (>= (get s 0) 0) (< (get s 0) (getRows x))) (and (>= (get s 1) 0) (< (get s 1) (getColumns x)))))
 
   (defn isSeen [s m] (contains? (get m \M) s))
-
+ 
   (defn moveUp [s] [(+ (get s 0) 1) (get s 1)])
-
   (defn moveDown [s] [(- (get s 0) 1) (get s 1)])
-
   (defn moveLeft [s] [(get s 0) (- (get s 1) 1)])
-
   (defn moveRight [s] [(get s 0) (+ (get s 1) 1)])
 
   (defn findPath [x mc m c s]
