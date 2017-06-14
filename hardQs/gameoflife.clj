@@ -17,19 +17,12 @@
       0)))
 
   (defn top [board square] (neighval board [(+ (get square 0) 1) (get square 1)]))
-
   (defn bottom [board square] (neighval board [(- (get square 0) 1) (get square 1)]))
-
   (defn right [board square] (neighval board [(get square 0) (+ (get square 1) 1)]))
-
   (defn left [board square] (neighval board [(get square 0) (- (get square 1) 1)]))
-
   (defn topright [board square] (neighval board [(+ (get square 0) 1) (+ (get square 1) 1)]))
-
   (defn topleft [board square] (neighval board [(+ (get square 0) 1) (- (get square 1) 1)]))
-
   (defn bottomright [board square] (neighval board [(- (get square 0) 1) (+ (get square 1) 1)]))
-
   (defn bottomleft [board square] (neighval board [(- (get square 0) 1) (- (get square 1) 1)]))
 
   (defn sumvals [b s] (reduce + [(top b s) (bottom b s) (right b s) (left b s) (topright b s) (topleft b s) (bottomright b s) (bottomleft b s)]))
