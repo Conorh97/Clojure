@@ -28,19 +28,12 @@
        (recur nums (+ pointer 1) (conj newvec (get lvals (get nums pointer))) lvals))))
   
   (defn straight [cards] (and (= (- (last (sortVals cards)) (first (sortVals cards))) 4) (= (count (frequencies (group cards 1))) 5)))
-
   (defn fluush [cards] (apply = (group cards 0)))
-
   (defn sflush [cards] (and (straight cards) (fluush cards)))
-
   (defn four-of-a-kind [cards] (isPresent cards 4))
-
   (defn full-house [cards] (and (isPresent cards 3) (isPresent cards 2)))
-
   (defn three-of-a-kind [cards] (isPresent cards 3))
-
   (defn two-pair [cards] (= 2 (some #{2} (into [] (vals (frequencies (into [] (vals (frequencies (group cards 1))))))))))
-
   (defn pair [cards] (isPresent cards 2))
 
   (defn highest [cards]
